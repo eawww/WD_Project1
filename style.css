@@ -1,0 +1,51 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 8, 2016, 1:07:39 PM
+    Author     : eric
+*/
+@font-face {
+    font-family: oleo;
+    src: url(fonts/Oleo.woff);
+}
+#headerdiv {
+    position:fixed;
+    background-color: lightgray;
+    width: 100%;
+}
+#movieicon{
+    position: absolute;
+}
+#searchbox{
+    position:absolute;
+    top:22px;
+    left: 360px;
+}
+#pagetitle {
+    position: absolute; 
+    left: 75px;
+    top: 0px;
+    font-family: oleo;
+}
+#submenu {
+    width:100%;
+    background-color:white;
+    border:1px solid lightgray;
+    padding:10px;
+}
+#search{
+    width:400px;
+    padding:10px;
+}
+#go{
+    position:relative;
+    float:right;
+    padding:10px;
+    height:100%;
+    background-color:blue;
+    color:white;
+}
+
