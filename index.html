@@ -13,10 +13,11 @@ and open the template in the editor.
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"> </script>
         <script src="script/movies.js"></script>
         <script src="script/movie_rentals.js"></script>
+        <script src="script/view_switcher.js"></script>
     </head>
     <body>
         <div id="headerdiv">
-            <img id=movieicon" src="icons/movie.png" height="70" width="70" alt="movie reel">
+            <img id="movieicon" src="icons/movie.png" height="70" width="70" alt="movie reel">
             <h1 id='pagetitle'>RENT A MOVIE</h1>
             <div id='searchbox'>
                 <input type="text" id="search">
@@ -29,7 +30,10 @@ and open the template in the editor.
                     <option value="rating">Rating</option>
                 </select>
                 <div id="layoutbuttons">
-                    
+                    <div id="button_holder">
+                        <img id="grid_button" src="icons/grid.jpg" alt="show grid">
+                        <img id="list_button" src="icons/list.jpg" alt="show list">
+                    </div>
                 </div>
             </div>
         </div>

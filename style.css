@@ -35,6 +35,8 @@ and open the template in the editor.
     background-color:white;
     border:1px solid lightgray;
     padding:10px;
+    position:absolute;
+    top:95px;
 }
 #search{
     width:400px;
@@ -47,5 +49,10 @@ and open the template in the editor.
     height:100%;
     background-color:blue;
     color:white;
+}
+#layoutbuttons {
+    position:relative;
+    float:right;
+    right:30px;
 }
 
