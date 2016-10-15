@@ -22,6 +22,7 @@ and open the template in the editor.
     position:absolute;
     top:22px;
     left: 360px;
+
 }
 #pagetitle {
     position: absolute; 
@@ -37,9 +38,28 @@ and open the template in the editor.
     position:absolute;
     top:95px;
 }
-#search{
+#search_box{
     width:400px;
     padding:10px;
+}
+#suggestions_box{
+    position:absolute;
+    top:35px;
+    z-index: 10;
+    border: solid lightgray 1px;
+    background-color:white;
+    width:500px;
+    max-height: 140px; 
+    overflow:auto;
+    display:none;
+}
+div.sub_suggestions{
+    width:470px;
+    padding:5px;
+}
+div.sub_suggestions:hover{
+    background-color: rgb(245,245,245);
+    cursor: pointer;
 }
 #go{
     position:relative;
