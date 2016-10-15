@@ -11,7 +11,10 @@ and open the template in the editor.
     font-family: oleo;
     src: url(fonts/Oleo.woff);
 }
-
+#movie_display{
+  position:absolute;
+  top:200px;
+}
 #movieicon{
     position: absolute;
 }
@@ -59,5 +62,27 @@ and open the template in the editor.
 }
 #headerdiv{
     position:fixed;
+    left:-10px;
+    top:-10px;
     width:100%;
+    margin:10px;
+}
+
+.grid_item {
+    
+}
+
+.list-photo {
+    padding:5px;
+    border: solid 1px lightgray;
+}
+.list-photo{
+    
+    height:200px;
+    width:200px;
+}
+.list-details{
+    position:relative;
+    left:230px;
+    top:-220px;
 }

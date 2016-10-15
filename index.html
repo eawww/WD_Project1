@@ -7,15 +7,47 @@ and open the template in the editor.
 <html>
     <head>
         <title>Project1</title>
+        <script id="grid-template" type="text/html">
+        <div class='grid_moviebox'>
+            <img src='{{photo}}'>
+            <div class='grid_title'>{{title}}</div>
+            <div class='grid_year'>{{year}}</div>    
+        </div>
+        </script>
+        <script id="list-template" type="text/html">
+            <div>
+                <div class="list-image">
+                    <img src="{{photo}}" class="list-photo">
+                </div>
+                <div class="list-details">
+                    <div>
+                        <span class="list-title">{{title}}</span>
+                        <span class="list-year">{{year}}</span>
+                    </div>
+                    <div>
+                        <span class="list-starring-txt">Starring:</span>
+                        <span class="list-starring">{{starring}}</span>
+                    </div>
+                    <div class="list-description">
+                        {{description}}
+                    </div>
+                    
+                </div>
+            </div>
+        </script>
         <link rel="stylesheet" type="text/css" href="style.css">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"> </script>
         <script src="script/movies.js"></script>
         <script src="script/movie_rentals.js"></script>
+        <script src="script/htmlMaker.js"></script>
         <script src="script/view_switcher.js"></script>
     </head>
     <body>
+        <div id="movie_display" class="grid">
+
+        </div>
         <div id="headerdiv">
             <div id="searchdiv">
                 <img id="movieicon" src="icons/movie.png" height="70" width="70" alt="movie reel">
@@ -39,9 +71,5 @@ and open the template in the editor.
             </div>
         </div>
         </div>
-        <div id="movie_display">
-
-        </div>
-
     </body>
 </html>
