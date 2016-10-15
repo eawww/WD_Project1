@@ -11,11 +11,7 @@ and open the template in the editor.
     font-family: oleo;
     src: url(fonts/Oleo.woff);
 }
-#headerdiv {
-    position:fixed;
-    background-color: lightgray;
-    width: 100%;
-}
+
 #movieicon{
     position: absolute;
 }
@@ -56,3 +52,12 @@ and open the template in the editor.
     right:30px;
 }
 
+#searchdiv {
+    background: lightgray;
+   height:95px;
+    width: 100%;
+}
+#headerdiv{
+    position:fixed;
+    width:100%;
+}

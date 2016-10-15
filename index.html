@@ -17,25 +17,31 @@ and open the template in the editor.
     </head>
     <body>
         <div id="headerdiv">
-            <img id="movieicon" src="icons/movie.png" height="70" width="70" alt="movie reel">
-            <h1 id='pagetitle'>RENT A MOVIE</h1>
-            <div id='searchbox'>
-                <input type="text" id="search">
-                <input type="submit" id="go" value="Search">
+            <div id="searchdiv">
+                <img id="movieicon" src="icons/movie.png" height="70" width="70" alt="movie reel">
+                <h1 id='pagetitle'>RENT A MOVIE</h1>
+                <div id='searchbox'>
+                    <input type="text" id="search">
+                    <input type="submit" id="go" value="Search">
+                </div>
             </div>
             <div id="submenu">
-                Sort By:
-                <select id="sort_selector">
-                    <option value="year">Year</option>
-                    <option value="rating">Rating</option>
-                </select>
-                <div id="layoutbuttons">
-                    <div id="button_holder">
-                        <img id="grid_button" src="icons/grid.jpg" alt="show grid">
-                        <img id="list_button" src="icons/list.jpg" alt="show list">
-                    </div>
+            Sort By:
+            <select id="sort_selector">
+                <option value="year">Year</option>
+                <option value="rating">Rating</option>
+            </select>
+            <div id="layoutbuttons">
+                <div id="button_holder">
+                    <img id="grid_button" src="icons/grid.jpg" alt="show grid">
+                    <img id="list_button" src="icons/list.jpg" alt="show list">
                 </div>
             </div>
         </div>
+        </div>
+        <div id="movie_display">
+
+        </div>
+
     </body>
 </html>
