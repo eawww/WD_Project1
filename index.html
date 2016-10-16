@@ -9,24 +9,36 @@ and open the template in the editor.
         <title>Project1</title>
         <script id="grid-template" type="text/html">
         <div class='grid_moviebox'>
-            <img src='{{photo}}'>
-            <div class='grid_title'>{{title}}</div>
-            <div class='grid_year'>{{year}}</div>    
+            <div class="grid-starring">
+                Starring: {{starring}}
+            </div>
+            <div class="grid-static-info">
+                <div class='grid_title'>{{title}}</div>
+                <div class='grid_year'>{{year}}</div>
+            </div>
+            
+            <img src='{{photo}}' class="grid_photo">
+            
         </div>
         </script>
         <script id="list-template" type="text/html">
-            <div>
+            <div class="list-item">
                 <div class="list-image">
                     <img src="{{photo}}" class="list-photo">
                 </div>
                 <div class="list-details">
                     <div>
-                        <span class="list-title">{{title}}</span>
-                        <span class="list-year">{{year}}</span>
+                        <span class="list-title"><b>{{title}}</b></span>
+                        <span class="list-year">({{year}})</span>
                     </div>
-                    <div>
-                        <span class="list-starring-txt">Starring:</span>
+                    
+                    <div class="list-starring-div">
+                        <span class="list-starring-txt"><b>Starring:</b></span>
                         <span class="list-starring">{{starring}}</span>
+                    </div>
+                    <div class="rating">
+                        <span><b>Rating: </b></span>
+                        <span>{{rating}}</span>
                     </div>
                     <div class="list-description">
                         {{description}}

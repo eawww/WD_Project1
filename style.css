@@ -13,7 +13,7 @@ and open the template in the editor.
 }
 #movie_display{
   position:absolute;
-  top:200px;
+  top:170px;
 }
 #movieicon{
     position: absolute;
@@ -105,4 +105,91 @@ div.sub_suggestions:hover{
     position:relative;
     left:230px;
     top:-220px;
+}
+.list-year{
+    color:lightgray;
+}
+
+.list-starring-div {
+    margin-top:13px;
+    margin-bottom:13px;
+}
+
+.list-description{
+    background:lightblue;
+    border: lightgray 1px solid;
+    width:430px;
+    margin-top:15px;
+    padding:10px;
+}
+
+.list-item{
+    height:230px;
+    border-bottom:lightgray 1px solid;
+    margin-bottom: 20px;
+}
+.rating{
+
+}
+
+.grid_photo{
+    height:200px;
+    width:200px;
+    padding:10px;
+    border: 1px solid lightgray;
+    margin:10px;
+}
+.grid_moviebox{
+    float:left;
+    margin-top:-40px;
+}
+
+.grid-static-info {
+    color:white;
+    text-align:center;
+    padding-top:5px;
+    padding-bottom:5px;
+    position:relative;
+    top:220px;
+    width:200px;
+    background-color:rgba(0,0,0,0.3);
+    left:21px;
+    margin-bottom:0px;
+    
+    transition: 1s; /*Standard, IE 10*/
+    -webkit-transition: 1s; /* For Chrome, Safari*/
+    -moz-transition: 1s; /* For Firefox*/
+    -o-transition:1s; /* For Opera*/
+}
+div.grid_moviebox {
+    position:relative;
+    overflow:hidden;
+}
+div.grid_moviebox:hover div.grid-static-info {
+    top:182px;
+    position:relative;
+}
+
+div.grid_moviebox:hover div.grid-starring {
+    display:block;
+    top:228px;
+}
+
+.grid-starring {
+    position:absolute;
+    color:white;
+    text-align:left;
+    background-color:rgba(0,0,0,0.3);
+    color:white;
+    top:290px;
+    height:40px;
+    width:190px;
+    left:21px;
+    padding-left:5px;
+    padding-right:5px;
+    display:none;
+    transition: 2s; /*Standard, IE 10*/
+    -webkit-transition: 2s; /* For Chrome, Safari*/
+    -moz-transition: 2s; /* For Firefox*/
+    -o-transition:2s; /* For Opera*/
 }
