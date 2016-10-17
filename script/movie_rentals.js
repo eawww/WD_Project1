@@ -1,24 +1,72 @@
 $(document).ready(function() {
-    $("#go").on('click', search);
-    $("#search_box").on('keyup',search);
+    $("#go").on('click', search_button);
+    $("#search_box").on('keyup',live_search);
     $("html").on('click',function(){
         $("#suggestions_box").hide();
     });
+    $("#sort_selector").on('change', sort);
 });
+
+//sorts data by year for initial display
+var data = movies['movies'];
+var sort_year = false;
+var search_clicked = false;
+
+data.sort(function(a,b) {
+    if ( a.year < b.year )
+        return -1;
+    if ( a.year > b.year )
+        return 1;
+    return 0;
+} );
+var movie_titles = populate_search();
+
+function sort(){
+    
+    //var select = $("#sort_selector");
+    //var answer = select.options[select.selectedIndex].value;
+    if(sort_year == true){
+    sort_year = false;
+    //sort data by year
+    data.sort(function(a,b) {
+        if ( a.year < b.year )
+            return -1;
+        if ( a.year > b.year )
+            return 1;
+        return 0;
+} );
+    }
+    else{
+    //sort data by rating
+    sort_year = true;
+    data.sort(function(a,b) {
+        if ( a.rating < b.rating )
+            return 1;
+        if ( a.rating > b.rating )
+            return -1;
+        return 0;
+} );    
+    }
+    movie_titles = populate_search();
+    search_button();
+    
+}
+
+
 
 function populate_search () {
     var search_options = [];
-    var data = movies["movies"];
     for(var i = 0; i < data.length; i++)
-        search_options[i] = "<b>" + data[i]["title"] + "</b>" + "(" + data[i]["year"] + ")" + ", Starring: " + data[i]["starring"];
+        search_options[i] = data[i]["title"] + "(" + data[i]["year"] + ")" + ", Starring: " + data[i]["starring"];
     return search_options;
 }
 
 /*The previous function uses the JSON movies variable located the movies.js file
   to populate the search bar for real-time suggestions*/
 
-function search () {
-    var movie_titles = populate_search();
+
+
+function live_search () {
     var html = "";
     var value = $("#search_box").val(); // gets the value of the search bar
     var show = false;
@@ -47,3 +95,49 @@ function search () {
         $("#suggestions_box").hide();
     
 }
+
+function search_button(){
+    search_clicked = true;
+    var temp = $("#movie_display").attr("class");
+    if(temp == "grid")
+        var template = $("#grid-template").html();
+    else
+        template = $("#list-template").html();
+    
+    make_html(template);
+}
+
+
+
+function find_index(){
+    /*Finds every occurence of the submitted text in the movie data and returns all
+      movies' indicies that match */
+    var index_array = "";
+    var rgexp = new RegExp($("#search_box").val(), 'i');
+    for(var i = 0; i < movie_titles.length; i++){
+        if(rgexp.test(movie_titles[i]) || movie_titles[i] == $("#search_box").val())
+            index_array += i;
+        }
+    return index_array;
+}
+
+function make_html(layout){
+    var index = find_index();
+    var html_maker = new htmlMaker(layout);
+    var all_html = "";
+    //var display_data = movies["movies"];
+    if(search_clicked && index != ""){
+            for(var j = 0; j < index.length; j++){
+            var temp = index[j];
+            var display_data = movies["movies"][temp];
+            var html = html_maker.getHTML(display_data);
+            all_html += html;
+        }}
+        else
+            all_html = html_maker.getHTML(display_data);
+        $("#movie_display").html(all_html);
+}
+    
+
+    
+        

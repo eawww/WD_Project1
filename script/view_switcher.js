@@ -12,21 +12,18 @@ $(document).ready(function(){
     $("#grid_button").on('click', function(){
         $("#grid_button").attr('src','icons/grid_pressed.jpg');
         $("#list_button").attr('src','icons/list.jpg');
-        var data = movies["movies"];
+        $("#movie_display").attr('class', 'grid');
+        //should make into a function
         var template = $("#grid-template").html();
-        var html_maker = new htmlMaker(template);
-        var html = html_maker.getHTML(data);
-        $("#movie_display").html(html);
+        make_html(template);
     });
     
     $("#list_button").on('click', function(){
         $("#grid_button").attr('src','icons/grid.jpg');
         $("#list_button").attr('src','icons/list_pressed.jpg');
-        var data = movies["movies"];
+        $("#movie_display").attr('class', 'list');
         var template = $("#list-template").html();
-        var html_maker = new htmlMaker(template);
-        var html = html_maker.getHTML(data);
-        $("#movie_display").html(html);
+        make_html(template);
         $(".rating-stars").each(function(){
             if ($(this).html() === "1"){
             $(this).html("&#9733<span style=\"color:lightgray;\">&#9734&#9734&#9734&#9734</span>");
@@ -48,11 +45,4 @@ $(document).ready(function(){
     });
 });
 
-function grid_button_clicked(){
-    
-}
-
-function list_button_clicked(){
-
-}
 
