@@ -98,12 +98,10 @@ function live_search () {
 
 function search_button(){
     search_clicked = true;
+    var template = $("#list-template").html();
     var temp = $("#movie_display").attr("class");
     if(temp == "grid")
-        var template = $("#grid-template").html();
-    else
-        template = $("#list-template").html();
-    
+        template = $("#grid-template").html();
     make_html(template);
 }
 
@@ -133,8 +131,10 @@ function make_html(layout){
             var html = html_maker.getHTML(display_data);
             all_html += html;
         }}
-        else
+        else{
+            var display_data = movies["movies"];
             all_html = html_maker.getHTML(display_data);
+        }
         $("#movie_display").html(all_html);
 }
     
