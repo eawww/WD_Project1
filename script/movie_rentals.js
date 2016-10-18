@@ -1,3 +1,7 @@
+//Eric Wilson and Michael Warnock
+//CS490WD Web Development Project 1
+//2016-10-17
+
 $(document).ready(function() {
     $("#go").on('click', search_button);
     $("#search_box").on('keyup',live_search);

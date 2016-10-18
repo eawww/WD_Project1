@@ -1,4 +1,6 @@
-
+//Eric Wilson and Michael Warnock
+//CS490WD Web Development Project 1
+//2016-10-17
 
 
 

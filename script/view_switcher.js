@@ -1,3 +1,7 @@
+//Eric Wilson and Michael Warnock
+//CS490WD Web Development Project 1
+//2016-10-17
+
 $(document).ready(function(){
     $("#grid_button").attr('src','icons/grid_pressed.jpg');
     //initial_gridification();
