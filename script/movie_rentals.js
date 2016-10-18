@@ -58,6 +58,7 @@ function populate_search () {
     var search_options = [];
     for(var i = 0; i < data.length; i++)
         search_options[i] = data[i]["title"] + "(" + data[i]["year"] + ")" + ", Starring: " + data[i]["starring"];
+    
     return search_options;
 }
 
@@ -136,6 +137,23 @@ function make_html(layout){
             all_html = html_maker.getHTML(display_data);
         }
         $("#movie_display").html(all_html);
+        $(".rating-stars").each(function(){
+            if ($(this).html() === "1"){
+            $(this).html("&#9733<span style=\"color:lightgray;\">&#9734&#9734&#9734&#9734</span>");
+            }
+            else if ($(this).html() === "2"){
+                $(this).html("&#9733&#9733<span style=\"color:lightgray;\">&#9734&#9734&#9734</span>");
+            }
+            else if ($(this).html() === "3"){
+                $(this).html("&#9733&#9733&#9733<span style=\"color:lightgray;\">&#9734&#9734</span>");
+            }
+            else if ($(this).html() === "4"){
+                $(this).html("&#9733&#9733&#9733&#9733<span style=\"color:lightgray;\">&#9734</span>");
+            }
+            else if ($(this).html() === "5"){
+                $(this).html("&#9733&#9733&#9733&#9733&#9733");
+            }
+        });
 }
     
 
