@@ -1,8 +1,15 @@
-<?php
+<?php 
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+  $db_hostname = 'localhost';
+  $db_database = "php";
+  $db_username = "root";
+  $db_password = "";
+  
 
+ $connection = mysqli_connect($db_hostname, $db_username,$db_password,$db_database);
+ 
+ if (!$connection)
+    die("Unable to connect to MySQL: " . mysqli_connect_errno());
+
+
+?>
