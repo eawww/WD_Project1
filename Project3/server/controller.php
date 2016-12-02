@@ -12,12 +12,12 @@ if (isset($_POST['type']) && is_session_active()) {
 
 
     switch ($request_type) { //check the request type
-        case "info":
+        /*case "info":
             $result = get_info($connection);
             break;
         case "courses":
             $result = get_courses($connection);
-            break;
+            break;*/
         case "logout":
             logout();
             $result= "success";
@@ -31,9 +31,9 @@ function is_session_active() {
     return isset($_SESSION) && count($_SESSION) > 0 && time() < $_SESSION['start'] + 60 * 5; //check if it has been 5 minutes
 }
 
-function get_info($connection) {
+/*function get_info($connection) {
     $array = array();
-    $query = "SELECT * FROM Student WHERE ID='" . $_SESSION["username"] . "'";
+    $query = "SELECT * FROM Customer WHERE ID='" . $_SESSION["username"] . "'";
     $result = mysqli_query($connection, $query);
     if (!$result)
         return json_encode($array);
@@ -48,9 +48,9 @@ function get_info($connection) {
         }
     }
     return json_encode($array);
-}
+}*/
 
-function get_courses($connection) {
+/*function get_courses($connection) {
     $final = array();
     $final["courses"] = array();
     //write a query about the enrolled courses for that student. The student ID is from the session
@@ -77,7 +77,7 @@ function get_courses($connection) {
     }
     return json_encode($final);
 }
-
+*/
 function logout() {
     // Unset all of the session variables.
     $_SESSION = array();
