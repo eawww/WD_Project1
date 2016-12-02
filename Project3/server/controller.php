@@ -23,12 +23,23 @@ if (isset($_POST['type']) && is_session_active()) {
             $result= "success";
             break;
     }
+    echo $result;
 }
 
-echo $result;
+if (isset($_POST['search']) && is_session_active()) {
+    $_SESSION['start'] = time();
+    $search_params = sanitizeMYSQL($connection, $_POST['search']);
+    $result = get_cars($search_params, $connection);
+    echo $result;
+}
 
 function is_session_active() {
     return isset($_SESSION) && count($_SESSION) > 0 && time() < $_SESSION['start'] + 60 * 5; //check if it has been 5 minutes
+}
+
+//Function to search database for available rental cars based on parameters.
+function get_cars($search_params, $connection){
+    
 }
 
 /*function get_info($connection) {
