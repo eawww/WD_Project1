@@ -26,8 +26,8 @@ function search(){
         dataType: "json",
         data: {search: $("#find-car-input").val()},
         success: function(data){
-            var info_template=$("#find-car-template").html();
-            var html_maker=new htmlMaker(info_template);
+            var cars_template=$("#find-car-template").html();
+            var html_maker=new htmlMaker(cars_template);
             var html=html_maker.getHTML(data);
             $("#search_results").html(html);
         }
