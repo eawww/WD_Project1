@@ -2,6 +2,7 @@
 include "sanitization.php";
 session_start(); //start the session
 $result = "";
+//$_POST['search'] = "silver Altima";
 //only process the data if there a request was made and the session is active
 if (isset($_POST['type']) && is_session_active()) {
     // session_regenerate_id(); //regenerate the session to prevent fixation
@@ -23,7 +24,7 @@ if (isset($_POST['type']) && is_session_active()) {
 }
 if (isset($_POST['search']) && is_session_active()) {
     $_SESSION['start'] = time();
-    $search_params = sanitizeMYSQL($connection, $_POST['search']);
+    $search_params = $_POST['search'];//sanitizeMYSQL($connection, $_POST['search']);
     $result = get_cars($search_params, $connection);
     echo $result;
 }
@@ -40,7 +41,7 @@ function get_cars($search_params, $connection){
     $final["search_results"] = array();
     $search_exploded = explode(" ", $search_params);
     $x = 0;
-    $query = "SELECT car.picture_type, car.picture, carspecs.Make, carspecs.Model, carspecs.YearMade, car.Color, carspecs.size, car.ID"
+    $query = "SELECT car.picture_type, car.picture, carspecs.Make, carspecs.Model, carspecs.YearMade, car.Color, carspecs.size, car.ID "
             . "FROM car INNER JOIN carspecs ON car.carSpecsID = carspecs.ID ";
     foreach($search_exploded as $search_each){
         
@@ -57,7 +58,7 @@ function get_cars($search_params, $connection){
     
     $query .= ") AND car.status=1;";
     $result = mysqli_query($connection, $query);
-    //CHECK IF QUERY IS WORKING!!!
+
     if (!$result)
         return json_encode($array);
     else{
@@ -65,12 +66,12 @@ function get_cars($search_params, $connection){
         for($i = 0; $i < $row_count; $i++){
             $row = mysqli_fetch_array($result);
             $array = array();
-            $array["picture"] = 'data:' . $row["Picture_type"] . ';base64,' . base64_encode($row["Picture"]);
+            $array["picture"] = 'data:' . $row["picture_type"] . ';base64,' . base64_encode($row["picture"]);
             $array["make"] = $row["Make"];
             $array["model"] = $row["Model"];
             $array["year"] = $row["YearMade"];
             $array["color"] = $row["Color"];
-            $array["size"] = $row["Size"];
+            $array["size"] = $row["size"];
             $array["ID"] = $row["ID"];
             $final["search_results"][] = $array;
         }
