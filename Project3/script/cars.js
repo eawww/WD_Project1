@@ -3,6 +3,7 @@ $(document).ready(init);
 function init() {
     $("#logout-link").on("click", logout);
     $("#find-car").on("click", search);
+    $(".car_rent").on("click", rent);
 }
 
 function logout(){
@@ -33,3 +34,21 @@ function search(){
         }
     });
 }
+
+function rent(){
+    $.ajax({
+        method: "POST",
+        url: "sever/controller.php",
+        dataType: "text",
+        data: {rental_id: $(".car_rent").attr("ID")},
+        success: function (data){
+            if(data == "success"){
+                alert("Car Successfully Rented!");
+            }
+            else
+                alert("Somthing Went Wrong!");
+        }
+    });
+}
+
+
