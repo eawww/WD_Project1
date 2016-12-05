@@ -2,6 +2,22 @@ $(document).ready(init);
 
 function init() {
     $("#rented-cars").on("click", rented_cars);
+    $(document).on("click", "div.return_car", function(){
+       var rent_ID = $(this).attr('data-rental-id');
+       return_car(rent_ID);
+    });
+}
+
+function return_car(rent_ID){
+    $.ajax({
+        method: "POST",
+        url: "server/return.php",
+        dataType: "json",
+        data: {rentID: rent_ID},
+        success: function(data){
+            rented_cars();
+        }
+    });
 }
 
 function rented_cars() {
