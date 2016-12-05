@@ -9,6 +9,7 @@
         <script type="text/javascript"  src='script/general.js'></script>
         <script type="text/javascript"  src='script/cars.js'></script>
         <script type="text/javascript"  src="script/rented.js"></script>
+        <script type="text/javascript"  src="script/returned.js"></script>
         <script id="rented-car-template" type="text/html">
         <table>
             <tr>
@@ -47,7 +48,6 @@
             <tr>
                 <th>Picture</th><th>Detail</th>
             </tr>
-            {{#block returned_car}}
             <tr>
                 <td><img src="{{picture}}"></td> 
                 <td class="car_details"> 
@@ -70,7 +70,6 @@
                     </div>          
                 </td>
             </tr>
-            {{#end block returned_car}}
         </table>
     </script>
     <script id="find-car-template" type="text/html">
