@@ -2,6 +2,14 @@ $(document).ready(init);
 
 function init() {
     $("#rented-cars").on("click", rented_cars);
+    $(document).on("click", "div.return_car", function(){
+       var rent_ID = $(this).attr('data-rental-id');
+       return_car(rent_ID);
+    });
+}
+
+function return_car(rent_ID){
+    alert(rent_ID);
 }
 
 function rented_cars() {
