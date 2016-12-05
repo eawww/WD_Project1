@@ -1,44 +1,12 @@
 <?php
 include "sanitization.php";
 session_start(); //start the session
-$result = "";
-//$_POST['search'] = "silver Altima";
-//only process the data if there a request was made and the session is active
-if (isset($_POST['type']) && is_session_active()) {
-    // session_regenerate_id(); //regenerate the session to prevent fixation
-    $_SESSION['start'] = time(); //reset the session start time
-    $request_type = sanitizeMYSQL($connection, $_POST['type']);
-    switch ($request_type) { //check the request type
-        /*case "info":
-            $result = get_info($connection);
-            break;
-        case "courses":
-            $result = get_courses($connection);
-            break;*/
-        case "logout":
-            logout();
-            $result= "success";
-            break;
-    }
-    echo $result;
-}
+
+
 if (isset($_POST['search']) && is_session_active()) {
     $_SESSION['start'] = time();
-    $search_params = $_POST['search'];//sanitizeMYSQL($connection, $_POST['search']);
-    $result = get_cars($search_params, $connection);
-    echo $result;
-}
+    $search_params = sanitizeMYSQL($connection, $_POST['search']);
 
-
-function is_session_active() {
-    return isset($_SESSION) && count($_SESSION) > 0 && time() < $_SESSION['start'] + 60 * 5; //check if it has been 5 minutes
-}
-
-
-//Function to search database for available rental cars based on parameters.
-function get_cars($search_params, $connection){
-    $final = array();
-    $final["search_results"] = array();
     $search_exploded = explode(" ", $search_params);
     $x = 0;
     $query = "SELECT car.picture_type, car.picture, carspecs.Make, carspecs.Model, carspecs.YearMade, car.Color, carspecs.size, car.ID "
@@ -58,30 +26,37 @@ function get_cars($search_params, $connection){
     
     $query .= ") AND car.status=1;";
     $result = mysqli_query($connection, $query);
-
-    if (!$result)
-        return json_encode($array);
-    else{
-        $row_count = mysqli_num_rows($result);
-        for($i = 0; $i < $row_count; $i++){
-            $row = mysqli_fetch_array($result);
-            $array = array();
-            $array["picture"] = 'data:' . $row["picture_type"] . ';base64,' . base64_encode($row["picture"]);
-            $array["make"] = $row["Make"];
-            $array["model"] = $row["Model"];
-            $array["year"] = $row["YearMade"];
-            $array["color"] = $row["Color"];
-            $array["size"] = $row["size"];
-            $array["ID"] = $row["ID"];
-            $final["search_results"][] = $array;
-        }
+    $array = array();
+    while($row = mysqli_fetch_assoc($result)){
+        $picture = 'data:' . $row['picture_type'] . ';base64,' . base64_encode($row['picture']);
+        $resultrow = array('picture'=>$picture,
+            'make'=>$row['Make'], 'model'=>$row['Model'],
+            'year'=>$row['YearMade'], 'size'=>$row['size'], 'color'=>$row['Color'],
+            'ID'=>$row['ID']);
+        $array[]=$resultrow;
     }
-    return json_encode($final);
+    echo json_encode($array);
 }
 
 
-function logout() {
-    // Unset all of the session variables.
+if (isset($_POST['rental_id']) && is_session_active()){
+    $_SESSION['start'] = time();
+    $CarID = $_POST['rental_id'];
+    $UserID = $_SESSION["username"];
+    $CurDate = date("Y-m-d");
+    //echo $CurDate;
+    $query = "INSERT INTO rental(rentDate, returnDate, status, CustomerID, carID)"
+            . "VALUES('$CurDate', NULL, 2, '$UserID', '$CarID');";
+    $result = mysqli_query($connection,$query);
+    if($result)
+        echo "success";
+    else
+        echo "failure";
+}
+
+
+if (isset($_POST['type'])== "logout" && is_session_active()) {
+// Unset all of the session variables.
     $_SESSION = array();
 // If it's desired to kill the session, also delete the session cookie.
 // Note: This will destroy the session, and not just the session data!
@@ -92,5 +67,12 @@ function logout() {
     }
 // Finally, destroy the session.
     session_destroy();
+    echo "success";
 }
+
+
+function is_session_active() {
+    return isset($_SESSION) && count($_SESSION) > 0 && time() < $_SESSION['start'] + 60 * 5; //check if it has been 5 minutes
+}
+
 ?>
