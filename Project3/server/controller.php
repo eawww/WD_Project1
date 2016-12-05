@@ -38,15 +38,15 @@ if (isset($_POST['search']) && is_session_active()) {
     echo json_encode($array);
 }
 
-
+//$_POST['rental_id'] = "11";
 if (isset($_POST['rental_id']) && is_session_active()){
-    $_SESSION['start'] = time();
+    //$_SESSION['start'] = time();
     $CarID = $_POST['rental_id'];
     $UserID = $_SESSION["username"];
     $CurDate = date("Y-m-d");
     //echo $CurDate;
-    $query = "INSERT INTO rental(rentDate, returnDate, status, CustomerID, carID)"
-            . "VALUES('$CurDate', NULL, 2, '$UserID', '$CarID');";
+    $query = "INSERT INTO `rental` (`rentDate`, `returnDate`, `status`, `CustomerID`, `carID`) VALUES
+    ('$CurDate', NULL, 1, '$UserID', '$CarID');" /*UPDATE car SET status='2' WHERE ID='$CarID';*/;
     $result = mysqli_query($connection,$query);
     if($result)
         echo "success";
