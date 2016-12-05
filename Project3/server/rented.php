@@ -19,7 +19,7 @@ if (is_session_active()){
         $resultrow = array('picture'=>$picture,
             'make'=>$row['Make'],'model'=>$row['Model'],
             'year'=>$row['YearMade'],'size'=>$row['Size'],'rental_ID'=>$row['ID'],
-            'return_date'=>$row['returnDate']);
+            'rent_date'=>$row['rentDate']);
         $array[]=$resultrow;
     }
     echo json_encode($array);
