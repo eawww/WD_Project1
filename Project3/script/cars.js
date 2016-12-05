@@ -3,8 +3,15 @@ $(document).ready(init);
 function init() {
     $("#logout-link").on("click", logout);
     $("#find-car").on("click", search);
-    $(".car_rent").on("click", rent);
+    //$(".car_rent").on("click", rent);
 }
+
+
+$(document).on("click", "div.car_rent", function(){
+       var rent_ID = $(this).attr('ID');
+       rent(rent_ID);
+    });
+
 
 function logout(){
     $.ajax({
@@ -35,12 +42,12 @@ function search(){
     });
 }
 
-function rent(){
+function rent($rent_ID){
     $.ajax({
         method: "POST",
         url: "sever/controller.php",
         dataType: "text",
-        data: {rental_id: $(".car_rent").attr("ID")},
+        data: {rental_id: $rent_ID},
         success: function (data){
             if(data == "success"){
                 alert("Car Successfully Rented!");
