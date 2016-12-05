@@ -9,7 +9,15 @@ function init() {
 }
 
 function return_car(rent_ID){
-    alert(rent_ID);
+    $.ajax({
+        method: "POST",
+        url: "server/return.php",
+        dataType: "json",
+        data: {rentID: rent_ID},
+        success: function(data){
+            rented_cars();
+        }
+    });
 }
 
 function rented_cars() {
